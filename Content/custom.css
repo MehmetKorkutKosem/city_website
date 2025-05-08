@@ -1,0 +1,11 @@
+﻿/* Başlangıçta metin gizli */
+.logout-text {
+    display: none;
+    color: white; /* Beyaz renk */
+    margin-left: 10px;
+}
+
+/* Simge üzerine gelindiğinde metni göster */
+.logout-container:hover .logout-text {
+    display: inline-block;
+}
