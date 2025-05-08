@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication8.Models.nufu>
+@{
+    ViewBag.Title = "İlçe";
+}
+
+<h2>İlçe Bilgileri</h2>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>nufus</th>
+
+            <th>yıl</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var nufus in Model)
+            {
+                <tr>
+                    <td>@nufus.yil</td>
+
+                    <td>@nufus.nufusSayisi</td>
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" style="text-align:center;">Henüz ilçe bilgisi bulunmamaktadır.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

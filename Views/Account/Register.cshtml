@@ -1,0 +1,81 @@
+﻿@model WebApplication8.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Yeni Bir Hesap Oluşturun";
+}
+
+<main aria-labelledby="title">
+    <h2 id="title" class="text-center text-success">@ViewBag.Title</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <section id="registerForm" class="p-4">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <hr />
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-label" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="submit" value="Kaydol" class="btn btn-outline-success w-100" />
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<style>
+    /* Kayıt formunun genel stili */
+    #registerForm {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Butonların hover durumu */
+    .btn-outline-success {
+        border-color: #28a745;
+        color: #28a745;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .btn-outline-success:hover {
+            background-color: #28a745;
+            color: white;
+        }
+
+    /* Kayıt başlığı */
+    #title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    /* Ortalamak için text-center ve yeşil renk */
+    .text-center {
+        text-align: center;
+    }
+
+    .text-success {
+        color: #28a745 !important;
+    }
+</style>

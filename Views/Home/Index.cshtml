@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <!-- Giriş Alanı -->
+    <div class="text-center mb-4">
+        <h2 class="display-4" style="color: #50C878;">Bitlis</h2>
+    </div>
+
+    <!-- Slider -->
+    <div id="sliderExample" class="carousel slide mb-5" data-bs-ride="carousel">
+        <!-- Slider Göstergeleri -->
+        <div class="carousel-indicators">
+            @if (ViewBag.Slider != null)
+            {
+                var sliderList = ViewBag.Slider as List<WebApplication8.Models.slider>;
+                if (sliderList != null)
+                {
+                    for (var i = 0; i < sliderList.Count; i++)
+                    {
+                        <button type="button" data-bs-target="#sliderExample" data-bs-slide-to="@i" class="@((i == 0) ? "active" : "")" aria-current="true" aria-label="Slide @i"></button>
+                    }
+                }
+            }
+        </div>
+
+        <!-- Slider İçeriği -->
+        <div class="carousel-inner">
+            @if (ViewBag.Slider != null)
+            {
+                var slider = ViewBag.Slider as List<WebApplication8.Models.slider>;
+                if (slider != null && slider.Count > 0)
+                {
+                    foreach (var item in slider)
+                    {
+                        <div class="carousel-item @((item == slider.First()) ? "active" : "")">
+                            <!-- Görsel -->
+                            <img src="@item.imgUrl" class="d-block w-100 img-fluid" style="max-height: 60vh; object-fit: cover;" alt="@item.baslik">
+
+                            <!-- Görsel Üzerindeki Yazılar -->
+                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-3 rounded">
+                                <h5>@item.baslik</h5>
+                                <p>@item.bilgi</p>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+
+        <!-- Önceki ve Sonraki Düğmeler -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#sliderExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Önceki</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#sliderExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Sonraki</span>
+        </button>
+    </div>
+
+    <!-- Bilgilendirme Bölümü -->
+    <div class="mt-5">
+        <div class="rounded p-4 shadow-lg" style="background-color: #50C878;">
+            <h2 class="text-white">@WebApplication8.kaynak.lang.aciklama2</h2>
+            <p class="text-dark">
+                @WebApplication8.kaynak.lang.aciklama
+            </p>
+        </div>
+    </div>
+</div>

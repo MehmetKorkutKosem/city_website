@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <ul class="navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Merhaba " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+        </li>
+        <li class="logout-container">
+            <!-- Oturumu Kapat Linki -->
+            <a href="javascript:void(0);" class="nav-link" title="Oturumu Kapat" onclick="document.getElementById('logoutForm').submit();">
+                <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+            </a>
+            <!-- Logout Form -->
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-none" }))
+            {
+                @Html.AntiForgeryToken()
+            }
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="navbar-nav navbar-right">
+        <li>
+            <!-- Oturum Aç Linki -->
+            <a href="@Url.Action("Login", "Account")" class="nav-link" title="Oturum Aç">
+                <i class="fas fa-sign-in-alt"></i> Giriş Yap
+            </a>
+        </li>
+        <li>
+            <!-- Kaydol Linki -->
+            <a href="@Url.Action("Register", "Account")" class="nav-link" title="Kaydol">
+                <i class="fas fa-user-plus"></i> Kaydol
+            </a>
+        </li>
+    </ul>
+}
+
+<!-- Font Awesome CSS Linki -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />

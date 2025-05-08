@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark" style="background-color: #50C878;">
+            <div class="container">
+                @Html.ActionLink("Bitlis", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink(WebApplication8.kaynak.lang.anasayfa, "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink(WebApplication8.kaynak.lang.İlçeler, "Ilce", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink(WebApplication8.kaynak.lang.Turizm, "Turizm", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink(WebApplication8.kaynak.lang.Nüfus, "Nufus", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Yönetim
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a href="@Url.Action("Index", "Sliders")" class="dropdown-item">Slider Yönet</a></li>
+                                    <li><a href="@Url.Action("Index", "Ilces")" class="dropdown-item">İlçe Yönet</a></li>
+                                    <li><a href="@Url.Action("Index", "Turizms")" class="dropdown-item">Turizm Yönet</a></li>
+                                    <li><a href="@Url.Action("Index", "Nufus")" class="dropdown-item">Nüfus Yönet</a></li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            @Html.ActionLink("Türkçe", "dilDegistir", "Home", new
+                            {
+                                lang = "tr",
+                    returnurl = this.Request.RawUrl
+                            }, null)
+                    </li>
+                    <li>
+                        @Html.ActionLink("İngilizce", "dilDegistir", "Home", new
+                        {
+                            lang = "en",
+                returnurl = this.Request.RawUrl
+                        }, null)
+                </li>
+                </ul>
+
+                @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        <!-- Sayfa içeriği burada gösterilir -->
+        @RenderBody()
+    </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @DateTime.Now.Year - BİTLİS TANITIM
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    .dropdown-item:hover {
+        background-color: #50C878; /* Zümrüt Yeşili renk */
+        color: white; /* Yazı rengini beyaz yap */
+    }
+
+    /* Zümrüt Yeşili (#50C878) Tabloların başlıkları */
+    .table thead {
+        background-color: #50C878;
+        color: white;
+    }
+
+    /* Tablolarda Zümrüt Yeşili Butonlar */
+    .btn-success {
+        background-color: #50C878;
+        color: white;
+        border: none;
+    }
+
+        /* Zümrüt Yeşili ile Hover Efekti */
+        .btn-success:hover {
+            background-color: #45a74d; /* Koyu Zümrüt */
+            color: white;
+        }
+
+    /* Tablolardaki butonlar için hover efekti */
+    .btn-group .btn:hover {
+        background-color: #45a74d;
+        color: white;
+    }
+</style>

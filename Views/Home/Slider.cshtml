@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Slider";
+}
+
+<div class="container mt-5">
+    <h2>@ViewBag.Title</h2>
+
+    <!-- Slider -->
+    <div id="sliderExample" class="carousel slide" data-bs-ride="carousel">
+        <!-- Slider göstergeleri -->
+        <div class="carousel-indicators">
+            @for (var i = 0; i < (ViewBag.Slider as List<WebApplication8.Models.slider>).Count; i++) // Slider verisi sayısı
+            {
+                <button type="button" data-bs-target="#sliderExample" data-bs-slide-to="@i" class="@((i == 0) ? "active" : "")" aria-current="true" aria-label="Slide @i"></button>
+            }
+        </div>
+
+        <!-- Slider içeriği -->
+        <div class="carousel-inner">
+            @foreach (var item in ViewBag.Slider as List<WebApplication8.Models.slider>)  // Slider verileri döngüsünde
+            {
+                <div class="carousel-item @((item == ViewBag.Slider.First()) ? "active" : "")">
+                    <!-- Fotoğrafın doğru URL'sine bağlantı -->
+                    <img src="@Url.Content(item.imgUrl)" class="d-block w-100" alt="@item.baslik"> <!-- imgUrl, veritabanındaki fotoğrafın yolunu temsil eder -->
+                    <div class="carousel-caption d-none d-md-block">
+                        <!-- Başlık ve açıklama -->
+                        <h5>@item.baslik</h5>
+                        <p>@item.bilgi</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Önceki ve Sonraki düğmeler -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#sliderExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Önceki</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#sliderExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Sonraki</span>
+        </button>
+    </div>
+</div>
+

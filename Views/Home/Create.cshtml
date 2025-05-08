@@ -1,0 +1,31 @@
+﻿@model WebApplication8.Models.slider
+
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken() <!-- AntiForgeryToken ekliyoruz -->
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.baslik)
+        @Html.TextBoxFor(m => m.baslik, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.bilgi)
+        @Html.TextBoxFor(m => m.bilgi, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.imgUrl)
+        <input type="file" name="imgUrl" class="form-control" />
+        <p>Veya</p>
+        @Html.TextBoxFor(m => m.imgUrl, new { @class = "form-control", placeholder = "Fotoğraf URL'sini buraya yazın" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ekle</button>
+}
+
+
+
+
+
+

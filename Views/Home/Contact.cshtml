@@ -1,0 +1,220 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Contact";
+    bool isAdmin = User.IsInRole("Admin"); // Admin kontrolü
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BİTLİS TANITIM</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-info">
+        <div class="container">
+            @Html.ActionLink("BİTLİS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Gezintiyi aç/kapat" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Ana Sayfa", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Nüfus", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("İlçeler", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Turizm", "Tourism", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        <h2>Bitlis İlçeleri</h2>
+        <table id="districtsTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>İlçe Adı</th>
+                    @if (isAdmin)
+                    {
+                        <th>İşlemler</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <!-- JavaScript ile doldurulacak -->
+            </tbody>
+        </table>
+        @if (isAdmin)
+        {
+            <div>
+                <input type="text" id="newDistrict" placeholder="Yeni ilçe adı" />
+                <button id="addDistrictBtn">Ekle</button>
+            </div>
+        }
+    </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - BİTLİS TANITIM</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var districts = ["TATVAN", "AHLAT", "ADİLCEVAZ", "GÜROYMAK", "HİZAN", "MUTKİ"];
+            var tableBody = document.querySelector("#districtsTable tbody");
+            var isAdmin = @Html.Raw(isAdmin.ToString().ToLower());
+
+            function renderTable() {
+                tableBody.innerHTML = "";
+                districts.forEach(function(district, index) {
+                    var row = document.createElement("tr");
+                    var cell = document.createElement("td");
+                    cell.textContent = district;
+                    row.appendChild(cell);
+
+                    if (isAdmin) {
+                        var actionCell = document.createElement("td");
+                        var deleteButton = document.createElement("button");
+                        deleteButton.textContent = "Sil";
+                        deleteButton.onclick = function() {
+                            districts.splice(index, 1);
+                            renderTable();
+                        };
+                        actionCell.appendChild(deleteButton);
+                        row.appendChild(actionCell);
+                    }
+
+                    tableBody.appendChild(row);
+                });
+            }
+
+            if (isAdmin) {
+                document.getElementById("addDistrictBtn").addEventListener("click", function() {
+                    var newDistrict = document.getElementById("newDistrict").value;
+                    if (newDistrict) {
+                        districts.push(newDistrict);
+                        document.getElementById("newDistrict").value = "";
+                        renderTable();
+                    }
+                });
+            }
+
+            renderTable();
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BİTLİS TANITIM</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-info">
+        <div class="container">
+            @Html.ActionLink("BİTLİS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Gezintiyi aç/kapat" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Ana Sayfa", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Nüfus", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("İlçeler", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Turizm", "Tourism", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        <h2>Bitlis İlçeleri</h2>
+        <table id="districtsTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>İlçe Adı</th>
+                    @if (isAdmin)
+                    {
+                        <th>İşlemler</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <!-- JavaScript ile doldurulacak -->
+            </tbody>
+        </table>
+        @if (isAdmin)
+        {
+            <div>
+                <input type="text" id="newDistrict" placeholder="Yeni ilçe adı" />
+                <button id="addDistrictBtn">Ekle</button>
+            </div>
+        }
+    </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - BİTLİS TANITIM</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var districts = ["TATVAN", "AHLAT", "ADİLCEVAZ", "GÜROYMAK", "HİZAN", "MUTKİ"];
+            var tableBody = document.querySelector("#districtsTable tbody");
+            var isAdmin = @Html.Raw(isAdmin.ToString().ToLower());
+
+            function renderTable() {
+                tableBody.innerHTML = "";
+                districts.forEach(function(district, index) {
+                    var row = document.createElement("tr");
+                    var cell = document.createElement("td");
+                    cell.textContent = district;
+                    row.appendChild(cell);
+
+                    if (isAdmin) {
+                        var actionCell = document.createElement("td");
+                        var deleteButton = document.createElement("button");
+                        deleteButton.textContent = "Sil";
+                        deleteButton.onclick = function() {
+                            districts.splice(index, 1);
+                            renderTable();
+                        };
+                        actionCell.appendChild(deleteButton);
+                        row.appendChild(actionCell);
+                    }
+
+                    tableBody.appendChild(row);
+                });
+            }
+
+            if (isAdmin) {
+                document.getElementById("addDistrictBtn").addEventListener("click", function() {
+                    var newDistrict = document.getElementById("newDistrict").value;
+                    if (newDistrict) {
+                        districts.push(newDistrict);
+                        document.getElementById("newDistrict").value = "";
+                        renderTable();
+                    }
+                });
+            }
+
+            renderTable();
+        });
+    </script>
+</body>
+</html>

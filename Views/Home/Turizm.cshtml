@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplication8.Models.turizm>
+@{
+    ViewBag.Title = "turizm";
+}
+
+<h2>İlçe Bilgileri</h2>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Gezilecek Yerler</th>
+
+            <th>Hakkında bilgiler</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var turizm in Model)
+            {
+                <tr>
+                    
+                    <td>@turizm.yerAdi</td>
+                    <td>@turizm.yerAdi</td>
+
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" style="text-align:center;">Henüz ilçe bilgisi bulunmamaktadır.</td>
+            </tr>
+        }
+    </tbody>
+</table>
