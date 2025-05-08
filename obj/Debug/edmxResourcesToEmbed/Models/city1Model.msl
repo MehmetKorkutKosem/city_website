@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BitlisModelStoreContainer" CdmEntityContainer="BitlisEntities2">
+    <EntitySetMapping Name="Ilces">
+      <EntityTypeMapping TypeName="BitlisModel.Ilce">
+        <MappingFragment StoreEntitySet="Ilce">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ilceAdi" ColumnName="ilceAdi" />
+          <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nufus">
+      <EntityTypeMapping TypeName="BitlisModel.nufu">
+        <MappingFragment StoreEntitySet="nufus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nufusSayisi" ColumnName="nufusSayisi" />
+          <ScalarProperty Name="yil" ColumnName="yil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sliders">
+      <EntityTypeMapping TypeName="BitlisModel.slider">
+        <MappingFragment StoreEntitySet="slider">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="imgUrl" ColumnName="imgUrl" />
+          <ScalarProperty Name="baslik" ColumnName="baslik" />
+          <ScalarProperty Name="bilgi" ColumnName="bilgi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="turizms">
+      <EntityTypeMapping TypeName="BitlisModel.turizm">
+        <MappingFragment StoreEntitySet="turizm">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="yerAdi" ColumnName="yerAdi" />
+          <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

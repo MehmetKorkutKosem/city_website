@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BitlisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ilce">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ilceAdi" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="aciklama" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="nufus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nufusSayisi" Type="int" />
+    <Property Name="yil" Type="int" />
+  </EntityType>
+  <EntityType Name="slider">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="imgUrl" Type="varchar(max)" Nullable="false" />
+    <Property Name="baslik" Type="varchar" MaxLength="50" />
+    <Property Name="bilgi" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="turizm">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="yerAdi" Type="varchar" MaxLength="50" />
+    <Property Name="aciklama" Type="varchar(max)" />
+  </EntityType>
+  <EntityContainer Name="BitlisModelStoreContainer">
+    <EntitySet Name="Ilce" EntityType="Self.Ilce" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nufus" EntityType="Self.nufus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="slider" EntityType="Self.slider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="turizm" EntityType="Self.turizm" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

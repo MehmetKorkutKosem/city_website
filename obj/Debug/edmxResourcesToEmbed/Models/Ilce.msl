@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="İlceModelStoreContainer" CdmEntityContainer="BitlisVT">
+    <EntitySetMapping Name="Ilces">
+      <EntityTypeMapping TypeName="İlceModel.Ilce">
+        <MappingFragment StoreEntitySet="Ilce">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ilceAdi" ColumnName="ilceAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
